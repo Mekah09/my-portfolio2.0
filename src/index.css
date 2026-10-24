@@ -1,1 +1,103 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/dm-sans-latin-wght-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif-latin-400-italic.woff2") format("woff2");
+}
+
+@theme {
+  --font-sans: "DM Sans", Arial, sans-serif;
+  --font-editorial: "Instrument Serif", Georgia, serif;
+  --color-canvas: #f8f7f3;
+  --color-ink: #29272d;
+  --color-muted: #6d6971;
+  --color-accent: #78539c;
+  --color-lilac: #e2d6ef;
+  --color-line: #e5e2de;
+  --animate-float: float 8s ease-in-out infinite;
+  --animate-float-delayed: float-delayed 7s ease-in-out infinite;
+  --animate-reveal: reveal 0.5s ease both;
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(1deg);
+    }
+  }
+  @keyframes float-delayed {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-6deg);
+    }
+    50% {
+      transform: translateY(7px) rotate(-3deg);
+    }
+  }
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 110px;
+  }
+  body {
+    @apply m-0 bg-canvas font-sans text-ink antialiased;
+  }
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+  button {
+    @apply cursor-pointer;
+  }
+  button,
+  a,
+  summary {
+    @apply outline-offset-4 focus-visible:outline-2 focus-visible:outline-accent;
+  }
+  ::selection {
+    @apply bg-lilac text-ink;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@utility page-shell {
+  width: min(1180px, calc(100% - 112px));
+  margin-inline: auto;
+  @media (width < 1024px) {
+    width: calc(100% - 64px);
+  }
+  @media (width < 640px) {
+    width: calc(100% - 40px);
+  }
+}
+@utility section-heading {
+  @apply text-[clamp(38px,4.2vw,53px)] font-medium leading-[1.1] tracking-[-.05em];
+}
