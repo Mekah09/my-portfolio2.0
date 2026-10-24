@@ -1,4 +1,4 @@
-# Safari Abdul-Akiyim — full-stack web developer portfolio
+# Abdulhakeem Adesola Zakariyau — full-stack web developer portfolio
 
 A React 19, Tailwind CSS 4, and Vite portfolio with responsive layouts, locally hosted fonts, multi-image project galleries, a printable résumé, social profiles, and a frontend-only contact form. Work stays on `master`.
 
@@ -18,12 +18,12 @@ Deploy the generated `dist/` directory to a static host. No runtime credentials 
 
 ## Personal details and socials
 
-Edit **`src/data/portfolio.js`**. The profile contains the real name Safari Abdul-Akiyim, the role Full-stack web developer, an editable `nickname` (currently MekahTheDev), and editable `email`, `phone`, `location`, `github`, `socials`, and résumé `summary` fields.
+Edit **`src/data/portfolio.js`**. The profile contains the real name Abdulhakeem Adesola Zakariyau, the role Full-stack web developer, an editable `nickname` (currently MekahTheDev), and editable `email`, `phone`, `location`, `github`, `socials`, and résumé `summary` fields.
 
 - Set `phone` with a country code to show a telephone link. WhatsApp uses `socials.whatsapp` when set, otherwise it derives a `wa.me` link from the phone number.
 - Set your LinkedIn, X, Facebook, and WhatsApp URLs in `profile.socials`. Empty URLs show a non-clickable coming-soon state; no fake profile links are used.
 - Empty email and phone fields display an available-on-request message in the contact panel and are omitted from the résumé.
-- Your confirmed skills are HTML, CSS, JavaScript, Tailwind CSS, Bootstrap, Node.js, Express.js, MongoDB, Git, and GitHub. The skills array drives both the website and résumé.
+- Your confirmed skills are HTML, CSS, JavaScript, React.js, Tailwind CSS, Bootstrap, Node.js, Express.js, MongoDB, Git, GitHub, and SEO. The skills array drives both the website and résumé.
 - Update the page title/description in `index.html` when you change the identity or positioning.
 
 ## Projects and multiple images

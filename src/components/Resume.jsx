@@ -10,6 +10,7 @@ const skillGroups = [
   },
   { label: "Backend & database", categories: ["BACKEND", "DATABASE"] },
   { label: "Tools & collaboration", categories: ["WORKFLOW", "TOOLS"] },
+  { label: "Search optimization", categories: ["SEO"] },
 ];
 
 function ResumeContent({ preview = false }) {
@@ -110,7 +111,7 @@ function ResumeContent({ preview = false }) {
         <h2 className="resume-section-title">Profile</h2>
         <p className="mt-2 text-[12px] leading-[1.8] text-[#514b59]">
           {profile.summary ||
-            "Full-stack web developer focused on responsive websites and complete web applications. I work across HTML, CSS, JavaScript, Tailwind CSS, and Bootstrap on the frontend, with Node.js, Express.js, and MongoDB on the backend. I use Git and GitHub to manage code and collaborate."}
+            "Full-stack web developer focused on responsive websites, intuitive interfaces, and practical backend systems."}
         </p>
       </section>
 

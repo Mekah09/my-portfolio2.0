@@ -8,13 +8,15 @@ import {
   SiJavascript,
   SiMongodb,
   SiNodedotjs,
+  SiReact,
   SiTailwindcss,
 } from "react-icons/si";
+import { FiSearch } from "react-icons/fi";
 import { OrbitVisual, FormaVisual } from "../components/ProjectVisuals";
 
 // Edit your public details here. Empty contact fields are never replaced with fake data.
 export const profile = {
-  name: "Safari Abdul-Akiyim",
+  name: "Abdulhakeem Adesola Zakariyau",
   nickname: "MekahTheDev", // Replace this with your preferred nickname.
   role: "Full-stack web developer",
   email: "", // e.g. your public contact email
@@ -29,7 +31,7 @@ export const profile = {
     whatsapp: "", // https://wa.me/<country-code-and-number>, or derived from phone.
   },
   summary:
-    "Full-stack web developer building responsive interfaces and practical backend systems. I work with HTML, CSS, JavaScript, Tailwind CSS, Bootstrap, Node.js, Express.js, and MongoDB, with Git and GitHub at the heart of my workflow.",
+    "Full-stack web developer building responsive interfaces and practical backend systems. I work with HTML, CSS, JavaScript, React.js, Tailwind CSS, Bootstrap, Node.js, Express.js, and MongoDB, with Git and GitHub at the heart of my workflow. I also apply SEO skills to build discoverable web experiences.",
 };
 
 // Replace these concept studies with your work. Add as many projects and images as needed.
@@ -138,6 +140,13 @@ export const skills = [
     featured: true,
   },
   {
+    name: "React.js",
+    Icon: SiReact,
+    detail: "Reusable components. Intuitive interfaces.",
+    category: "FRONTEND",
+    featured: true,
+  },
+  {
     name: "Tailwind CSS",
     Icon: SiTailwindcss,
     detail: "Custom interfaces, built with care.",
@@ -182,5 +191,11 @@ export const skills = [
     detail: "A home for code and collaboration.",
     category: "WORKFLOW",
     featured: true,
+  },
+  {
+    name: "SEO",
+    Icon: FiSearch,
+    detail: "Websites built to be discovered.",
+    category: "SEO",
   },
 ];

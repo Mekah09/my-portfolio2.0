@@ -429,8 +429,9 @@ function App() {
                 <p className="mb-8 mt-4 text-[13px] leading-[1.95] text-muted">
                   I’m {profile.name}, also known as {profile.nickname} — a
                   full-stack web developer. I build responsive websites with
-                  HTML, CSS, JavaScript, Tailwind CSS, and Bootstrap, and
+                  HTML, CSS, JavaScript, React.js, Tailwind CSS, and Bootstrap, and
                   develop backend systems with Node.js, Express.js, and MongoDB.
+                  I also bring SEO skills to create discoverable web experiences.
                   From the first layout to the last API response, I enjoy making
                   the whole experience work together.
                 </p>
@@ -491,7 +492,7 @@ function App() {
                   What we create with it is what matters.
                 </p>
               </div>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
                 {skills.map(({ name, Icon, detail, category }) => (
                   <div
                     key={name}
