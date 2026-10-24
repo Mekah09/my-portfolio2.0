@@ -232,7 +232,7 @@ export default function HeroScene() {
           <span className="font-mono text-[9px] tracking-wide text-[#a59bae]">
             a-little-about-me.js
           </span>
-          <span className="font-mono text-[9px] text-[#766e81]">JS</span>
+          <span className="font-mono text-[9px] text-[#a59bae]">JS</span>
         </div>
         <div className="space-y-1 px-5 py-5 font-mono text-[clamp(10px,2.5vw,12px)] leading-[1.7] sm:text-[12px]">
           <div>

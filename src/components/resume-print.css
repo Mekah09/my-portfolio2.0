@@ -1,0 +1,107 @@
+/* The document is duplicated only for printing; display:none keeps it out of the screen accessibility tree. */
+.resume-print {
+  display: none;
+}
+
+.resume-sheet {
+  padding: 34px;
+  font-family: "DM Sans", Arial, sans-serif;
+}
+
+.resume-section-title {
+  color: #78539c;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@media (width < 640px) {
+  .resume-sheet {
+    padding: 24px 20px;
+  }
+}
+
+@page {
+  size: A4;
+  margin: 14mm 16mm;
+}
+
+@media print {
+  html,
+  body {
+    background: white !important;
+    color: #29272d !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    scroll-behavior: auto !important;
+  }
+
+  .site-shell,
+  dialog,
+  .resume-dialog,
+  .resume-preview-note {
+    display: none !important;
+  }
+
+  ::backdrop {
+    display: none !important;
+    background: transparent !important;
+  }
+
+  .resume-print {
+    display: block !important;
+  }
+
+  .resume-sheet {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .resume-sheet h1 {
+    font-size: 28pt;
+  }
+  .resume-sheet h2 {
+    break-after: avoid;
+  }
+  .resume-sheet p,
+  .resume-sheet dd {
+    orphans: 2;
+    widows: 2;
+  }
+  .resume-header,
+  .resume-project,
+  .resume-footer {
+    break-inside: avoid;
+  }
+  .resume-section {
+    margin-top: 5mm;
+  }
+  .resume-section-title {
+    font-size: 8pt;
+  }
+  .resume-sheet a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .resume-socials a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 7pt;
+    overflow-wrap: anywhere;
+  }
+  .resume-socials svg {
+    display: none;
+  }
+  .resume-footer {
+    margin-top: 6mm;
+    padding-top: 3mm;
+  }
+}
