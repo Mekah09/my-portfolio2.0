@@ -193,7 +193,7 @@ function App() {
           >
             <Asterisk className="size-7 text-accent" />
             <span className="text-[25px] font-bold tracking-[-.07em]">
-              mekah<span className="text-accent">.</span>
+              MekahThedev<span className="text-accent">.</span>
             </span>
           </a>
           <nav

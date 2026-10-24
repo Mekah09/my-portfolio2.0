@@ -158,7 +158,7 @@ export function OrbitVisual() {
             fontSize="7"
             fontFamily="sans-serif"
           >
-            Mekah's workspace
+            MekahTheDev's workspace
           </text>
           <text
             x="78"
