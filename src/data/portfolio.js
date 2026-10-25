@@ -12,51 +12,63 @@ import {
   SiTailwindcss,
 } from "react-icons/si";
 import { FiSearch } from "react-icons/fi";
+import nookImage from "../assets/images/nook.webp";
+import recipesImage from "../assets/images/recepies.webp";
+import eeImage from "../assets/images/EE.webp";
 
-// Edit your public details here. Empty contact fields are never replaced with fake data.
 export const profile = {
   name: "Abdulhakeem Adesola Zakariyau",
-  nickname: "MekahTheDev", // Replace this with your preferred nickname.
+  nickname: "MekahTheDev",
   role: "Full-stack web developer",
-  email: "", // e.g. your public contact email
-  phone: "", // Include a country code, e.g. +234…; also enables the phone link.
-  location: "",
+  email: "zakariyauabdulhakeem32@gmail.com",
+  phone: "+2349053618574", 
+  location: "Osogbo, Osun State, Nigeria",
   github: "https://github.com/Mekah09",
   socials: {
     github: "https://github.com/Mekah09",
     linkedin: "",
-    x: "",
+    x: "https://x.com/hakeemzakariyau?s=11",
     facebook: "",
-    whatsapp: "", // https://wa.me/<country-code-and-number>, or derived from phone.
+    whatsapp: " https://wa.me/2349053618574",
   },
   summary:
     "Full-stack web developer building responsive interfaces and practical backend systems. I work with HTML, CSS, JavaScript, React.js, Tailwind CSS, Bootstrap, Node.js, Express.js, and MongoDB, with Git and GitHub at the heart of my workflow. I also apply SEO skills to build discoverable web experiences.",
 };
 
-// Add projects here with a brief description, live-demo URL, and real website screenshots.
-// images: [{ src: "/projects/nook/storefront.webp", alt: "Nook storefront", caption: "Storefront" }]
 export const projects = [
   {
-    id: "nook",
+    id: "1",
     name: "Nook",
     type: "Full-stack e-commerce",
     isConcept: false,
     description: "A full-stack e-commerce website with buyer and seller login.",
     liveUrl: "https://nook-pearl-six.vercel.app",
-    stack: [],
-    // Real site screenshots will be added when the environment can access the domain.
-    images: [],
+    stack: ["reactjs", "Tailwind CSS", "Node.js", "Express.js", "MongoDB"],
+    images: [{ src:nookImage }],
   },
   {
-    id: "aks-recipes",
+    id: "2",
     name: "AKS Recipes",
     type: "Frontend recipe app",
     isConcept: false,
-    description: "A recipe app built with React.js and Tailwind CSS.",
+    description: "A recipe app built with React.js and Tailwind CSS, allowing users to search for recipes and view details, including ingredients and instructions, got the recipes from dummyjson.com.",
     liveUrl: "https://aks-recipes.vercel.app",
     stack: ["React.js", "Tailwind CSS"],
-    // Real site screenshots will be added when the environment can access the domain.
-    images: [],
+    images: [{
+      src: recipesImage,
+    }],
+  },
+    {
+    id: "3",
+    name: "Everyday Elegance",
+    type: "Frontend e-commerce website",
+    isConcept: false,
+    description: "A responsive e-commerce website built with HTML5, Tailwind CSS, and Javascript allowing users to browse products, add items to the cart, and proceed to checkout, got the products from dummyjson.com.",
+    liveUrl: "https://aks-recipes.vercel.app",
+    stack: ["HTML5", "Tailwind CSS", "JavaScript"],
+    images: [{
+      src: eeImage,
+    }],
   },
 ];
 
