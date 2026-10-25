@@ -12,8 +12,7 @@ import {
 } from "react-icons/fi";
 import HeroScene from "./components/HeroScene";
 import { profile, projects, skills } from "./data/portfolio";
-import ProjectDialog from "./components/ProjectDialog";
-import ProjectCover from "./components/ProjectCover";
+import ProjectShowcase from "./components/ProjectShowcase";
 import ContactForm from "./components/ContactForm";
 import SocialLinks from "./components/SocialLinks";
 import ResumeDocument, { ResumeButton } from "./components/Resume";
@@ -49,8 +48,6 @@ function SectionLabel({ number, children, light = false }) {
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [filter, setFilter] = useState("All work");
-  const [selectedProject, setSelectedProject] = useState(null);
   const [activeSection, setActiveSection] = useState("home");
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -69,14 +66,6 @@ function App() {
     };
   }, []);
 
-  const visibleProjects =
-    filter === "All work"
-      ? projects
-      : projects.filter((project) => project.category === filter);
-  const categories = [
-    "All work",
-    ...new Set(projects.map((project) => project.category)),
-  ];
   const navigation = [
     ["work", "Work"],
     ["about", "About"],
@@ -281,118 +270,14 @@ function App() {
             className="border-y border-line bg-white/45 py-17 sm:py-22"
           >
             <div className="page-shell">
-              <SectionLabel number="01">Selected explorations</SectionLabel>
-              <div className="mb-9 mt-6 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-                <h2 className="section-heading">
-                  Small details.
-                  <br />
-                  <span className="font-editorial font-normal italic text-accent">
-                    Big difference.
-                  </span>
-                </h2>
-                <p className="max-w-[305px] text-[13px] leading-7 text-muted">
-                  A collection of ideas brought into focus.
-                  <br />
-                  Thoughtfully designed. Built to be useful.
-                </p>
-              </div>
-              <div
-                className="mb-8 flex flex-wrap gap-2"
-                role="group"
-                aria-label="Filter projects"
-              >
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    aria-pressed={filter === category}
-                    onClick={() => setFilter(category)}
-                    className={`rounded-full border px-4 py-2 text-[10px] font-medium transition ${filter === category ? "border-ink bg-ink text-white" : "border-line bg-transparent text-muted hover:border-accent hover:text-accent"}`}
-                  >
-                    {category}
-                    <span
-                      className={`ml-2 ${filter === category ? "text-white/50" : "text-muted"}`}
-                    >
-                      {String(
-                        category === "All work"
-                          ? projects.length
-                          : projects.filter(
-                              (project) => project.category === category,
-                            ).length,
-                      ).padStart(2, "0")}
-                    </span>
-                  </button>
+              <SectionLabel number="01">Selected work</SectionLabel>
+              <h2 className="section-heading mb-9 mt-6">
+                Projects<span className="text-accent">.</span>
+              </h2>
+              <div className="grid gap-6">
+                {projects.map((project) => (
+                  <ProjectShowcase key={project.id} project={project} />
                 ))}
-              </div>
-              <div
-                className="grid gap-x-7 gap-y-10 md:grid-cols-2"
-                aria-live="polite"
-              >
-                {visibleProjects.map((project) => (
-                  <article
-                    key={project.id}
-                    className="group motion-safe:animate-reveal"
-                  >
-                    <button
-                      onClick={() => setSelectedProject(project)}
-                      className="block w-full rounded-2xl text-left outline-offset-4"
-                      aria-label={`View ${project.name} ${project.isConcept ? "concept study" : "project details"}`}
-                    >
-                      <div className="overflow-hidden rounded-2xl transition duration-500 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:shadow-ink/8">
-                        <ProjectCover project={project} />
-                      </div>
-                      <div className="mt-5 flex items-center justify-between gap-4">
-                        <div>
-                          <div className="mb-2 flex flex-wrap items-center gap-3">
-                            <h3 className="text-[24px] font-medium tracking-[-.04em]">
-                              {project.name}
-                              <span className="text-accent">.</span>
-                            </h3>
-                            {project.isConcept && (
-                              <span className="rounded-full border border-line px-2 py-0.5 text-[8px] uppercase tracking-wider text-muted">
-                                Concept study
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-[12px] text-muted">
-                            {project.line}
-                          </p>
-                        </div>
-                        <span className="grid size-10 shrink-0 place-items-center rounded-full border border-line transition group-hover:border-accent group-hover:bg-accent group-hover:text-white">
-                          <FiArrowUpRight aria-hidden="true" size={19} />
-                        </span>
-                      </div>
-                    </button>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {project.stack.slice(0, 3).map((tech) => (
-                        <span
-                          key={tech}
-                          className="text-[9px] text-muted after:mx-2 after:text-muted after:content-['/'] last:after:content-none"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </article>
-                ))}
-              </div>
-              <div className="mt-12 flex flex-col justify-between gap-4 border-t border-line pt-6 sm:flex-row sm:items-center">
-                <p className="text-[11px] text-muted">
-                  The process is just as important as the pixels.
-                </p>
-                <a
-                  href={profile.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group flex items-center gap-2 text-[11px] font-medium"
-                >
-                  Follow what I’m building{" "}
-                  <FiGithub aria-hidden="true" className="ml-1" size={15} />
-                  <FiArrowUpRight
-                    aria-hidden="true"
-                    className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                    size={14}
-                  />
-                </a>
               </div>
             </div>
           </section>
@@ -429,11 +314,11 @@ function App() {
                 <p className="mb-8 mt-4 text-[13px] leading-[1.95] text-muted">
                   I’m {profile.name}, also known as {profile.nickname} — a
                   full-stack web developer. I build responsive websites with
-                  HTML, CSS, JavaScript, React.js, Tailwind CSS, and Bootstrap, and
-                  develop backend systems with Node.js, Express.js, and MongoDB.
-                  I also bring SEO skills to create discoverable web experiences.
-                  From the first layout to the last API response, I enjoy making
-                  the whole experience work together.
+                  HTML, CSS, JavaScript, React.js, Tailwind CSS, and Bootstrap,
+                  and develop backend systems with Node.js, Express.js, and
+                  MongoDB. I also bring SEO skills to create discoverable web
+                  experiences. From the first layout to the last API response, I
+                  enjoy making the whole experience work together.
                 </p>
                 <div className="divide-y divide-line">
                   {[
@@ -610,13 +495,6 @@ function App() {
             </a>
           </div>
         </footer>
-        {selectedProject && (
-          <ProjectDialog
-            key={selectedProject.id}
-            project={selectedProject}
-            onClose={() => setSelectedProject(null)}
-          />
-        )}
       </div>
       <ResumeDocument />
     </>

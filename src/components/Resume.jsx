@@ -135,7 +135,7 @@ function ResumeContent({ preview = false }) {
       </section>
 
       <section className="resume-section mt-6" aria-label="Selected projects">
-        <h2 className="resume-section-title">Selected projects & concepts</h2>
+        <h2 className="resume-section-title">Selected projects</h2>
         <div className="mt-3 space-y-4">
           {projects.map((project) => (
             <div key={project.id || project.name} className="resume-project">
@@ -150,12 +150,24 @@ function ResumeContent({ preview = false }) {
               <p className="mt-1.5 text-[11px] leading-[1.7] text-[#514b59]">
                 {project.description}
               </p>
-              <p className="mt-1.5 text-[10px] leading-[1.6] text-[#6d6971]">
-                <span className="font-semibold">
-                  {project.isConcept === false ? "Stack" : "Proposed stack"}:
-                </span>{" "}
-                {project.stack.join(" · ")}
-              </p>
+              {!!project.stack?.length && (
+                <p className="mt-1.5 text-[10px] leading-[1.6] text-[#6d6971]">
+                  <span className="font-semibold">
+                    {project.isConcept ? "Proposed stack" : "Stack"}:
+                  </span>{" "}
+                  {project.stack.join(" · ")}
+                </p>
+              )}
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-block break-all text-[10px] text-[#78539c] underline underline-offset-3"
+                >
+                  Live demo: {project.liveUrl.replace(/^https?:\/\//, "")}
+                </a>
+              )}
             </div>
           ))}
         </div>

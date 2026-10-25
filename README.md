@@ -1,6 +1,6 @@
 # Abdulhakeem Adesola Zakariyau — full-stack web developer portfolio
 
-A React 19, Tailwind CSS 4, and Vite portfolio with responsive layouts, locally hosted fonts, multi-image project galleries, a printable résumé, social profiles, and a frontend-only contact form. Work stays on `master`.
+A React 19, Tailwind CSS 4, and Vite portfolio with responsive layouts, locally hosted fonts, concise project cards and live demos, a printable résumé, social profiles, and a frontend-only contact form. Work stays on `master`.
 
 ## Development
 
@@ -26,30 +26,22 @@ Edit **`src/data/portfolio.js`**. The profile contains the real name Abdulhakeem
 - Your confirmed skills are HTML, CSS, JavaScript, React.js, Tailwind CSS, Bootstrap, Node.js, Express.js, MongoDB, Git, GitHub, and SEO. The skills array drives both the website and résumé.
 - Update the page title/description in `index.html` when you change the identity or positioning.
 
-## Projects and multiple images
+## Projects and live demos
 
-Add any number of entries to the `projects` array in `src/data/portfolio.js`. Filter categories and counts update automatically. Each project supports descriptions, technology tags, challenge, approach, highlights (`features`), contribution (`scope`), outcome, source/live URLs, and an image gallery.
+Edit `projects` in `src/data/portfolio.js`. Each card shows the project name, a short description, screenshots, and a direct **Live demo** link. There are no case-study dialogs or lengthy project narratives. The printable résumé uses the same project data and demo URL.
 
-Put your images in `public/projects/<project-name>/`, then reference them from the site root:
+The current project is **Nook**, the owner's full-stack e-commerce website with buyer and seller login: https://nook-pearl-six.vercel.app. No unverified backend technologies are listed for this project.
+
+Add any number of projects using a unique `id`, `name`, `type`, `description`, `liveUrl`, and `images` array. Store real screenshots in `public/projects/<project>/`:
 
 ```js
 images: [
-  {
-    src: "/projects/my-project/home.jpg",
-    alt: "Homepage showing the product search and featured items",
-    caption: "Desktop homepage",
-  },
-  {
-    src: "/projects/my-project/mobile.jpg",
-    alt: "Mobile product details with the add-to-cart action",
-    caption: "Product details on mobile",
-  },
+  { src: "/projects/nook/storefront.webp", alt: "Nook storefront", caption: "Storefront" },
+  { src: "/projects/nook/products.webp", alt: "Nook product listing", caption: "Products" },
 ],
 ```
 
-The first image becomes the project cover. Dialogs support thumbnails, previous/next controls, and left/right arrow keys. Broken images show a fallback. If `images` is empty, the project’s optional `Visual` component is used. If neither exists, a text preview is shown. Give every project a unique `id`.
-
-Orbit and Forma remain clearly labeled **concept studies** with original SVG example illustrations. Replace these with your real work; set `isConcept: false` for completed projects. Optional `liveUrl` and `sourceUrl` show links only when set to an HTTP(S) URL. `outcome` is optional; add real results rather than invented metrics.
+The first screenshot is the default preview; thumbnails select additional images. Missing images use a simple text fallback. Screenshot capture is currently blocked by the cloud network policy for `nook-pearl-six.vercel.app`; the required domain addition has been saved to the environment configuration draft. The Nook `images` array is intentionally empty until real screenshots can be captured. No fabricated website screenshots are included.
 
 ## Printable résumé
 
