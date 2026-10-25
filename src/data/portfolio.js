@@ -15,13 +15,14 @@ import { FiSearch } from "react-icons/fi";
 import nookImage from "../assets/images/nook.webp";
 import recipesImage from "../assets/images/recepies.webp";
 import eeImage from "../assets/images/EE.webp";
+import landingPageImage from "../assets/images/landingPage.webp";
 
 export const profile = {
   name: "Abdulhakeem Adesola Zakariyau",
   nickname: "MekahTheDev",
   role: "Full-stack web developer",
   email: "zakariyauabdulhakeem32@gmail.com",
-  phone: "+2349053618574", 
+  phone: "+2349053618574",
   location: "Osogbo, Osun State, Nigeria",
   github: "https://github.com/Mekah09",
   socials: {
@@ -44,7 +45,7 @@ export const projects = [
     description: "A full-stack e-commerce website with buyer and seller login.",
     liveUrl: "https://nook-pearl-six.vercel.app",
     stack: ["reactjs", "Tailwind CSS", "Node.js", "Express.js", "MongoDB"],
-    images: [{ src:nookImage }],
+    images: [{ src: nookImage }],
   },
   {
     id: "2",
@@ -58,7 +59,7 @@ export const projects = [
       src: recipesImage,
     }],
   },
-    {
+  {
     id: "3",
     name: "Everyday Elegance",
     type: "Frontend e-commerce website",
@@ -68,6 +69,18 @@ export const projects = [
     stack: ["HTML5", "Tailwind CSS", "JavaScript"],
     images: [{
       src: eeImage,
+    }],
+  },
+  {
+    id: "4",
+    name: "NAKAMA Landing Page",
+    type: "Frontend landing page",
+    isConcept: false,
+    description: "A responsive landing page built with HTML5, Tailwind CSS, Bootstrap and Javascript.",
+    liveUrl: "https://mekah09.github.io/landing-page-pra-tailwind-bootstrap/index.html",
+    stack: ["HTML5", "Tailwind CSS", "Bootstrap", "JavaScript"],
+    images: [{
+      src: landingPageImage,
     }],
   },
 ];
