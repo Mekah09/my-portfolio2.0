@@ -47,6 +47,17 @@ export const projects = [
     // Real site screenshots will be added when the environment can access the domain.
     images: [],
   },
+  {
+    id: "aks-recipes",
+    name: "AKS Recipes",
+    type: "Frontend recipe app",
+    isConcept: false,
+    description: "A recipe app built with React.js and Tailwind CSS.",
+    liveUrl: "https://aks-recipes.vercel.app",
+    stack: ["React.js", "Tailwind CSS"],
+    // Real site screenshots will be added when the environment can access the domain.
+    images: [],
+  },
 ];
 
 export const skills = [

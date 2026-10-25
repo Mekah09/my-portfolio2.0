@@ -29,7 +29,7 @@ function PreviewImage({ image, name, thumbnail = false }) {
   );
 }
 
-function PreviewPlaceholder({ name, unavailable = false }) {
+function PreviewPlaceholder({ name, type }) {
   return (
     <div className="flex h-full flex-col items-center justify-center bg-[#eeece6] px-6 text-center">
       <span className="font-editorial text-[clamp(52px,8vw,84px)] italic leading-none tracking-[-.055em] text-ink">
@@ -37,9 +37,7 @@ function PreviewPlaceholder({ name, unavailable = false }) {
         <span className="text-accent">.</span>
       </span>
       <span className="mt-5 text-[10px] uppercase tracking-[.18em] text-muted">
-        {unavailable
-          ? "Project preview unavailable"
-          : "Full-stack web application"}
+        {type || "Web application"}
       </span>
     </div>
   );
@@ -66,7 +64,7 @@ export default function ProjectShowcase({ project }) {
   const preview = image ? (
     <PreviewImage key={image.src} image={image} name={project.name} />
   ) : (
-    <PreviewPlaceholder name={project.name} />
+    <PreviewPlaceholder name={project.name} type={project.type} />
   );
 
   return (

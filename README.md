@@ -32,6 +32,8 @@ Edit `projects` in `src/data/portfolio.js`. Each card shows the project name, a 
 
 The current project is **Nook**, the owner's full-stack e-commerce website with buyer and seller login: https://nook-pearl-six.vercel.app. No unverified backend technologies are listed for this project.
 
+**AKS Recipes** is a frontend recipe app built with React.js and Tailwind CSS: https://aks-recipes.vercel.app.
+
 Add any number of projects using a unique `id`, `name`, `type`, `description`, `liveUrl`, and `images` array. Store real screenshots in `public/projects/<project>/`:
 
 ```js
@@ -41,7 +43,7 @@ images: [
 ],
 ```
 
-The first screenshot is the default preview; thumbnails select additional images. Missing images use a simple text fallback. Screenshot capture is currently blocked by the cloud network policy for `nook-pearl-six.vercel.app`; the required domain addition has been saved to the environment configuration draft. The Nook `images` array is intentionally empty until real screenshots can be captured. No fabricated website screenshots are included.
+The first screenshot is the default preview; thumbnails select additional images. Missing images use a simple text fallback showing each project's actual type. Screenshot capture is currently blocked by the cloud network policy for `nook-pearl-six.vercel.app` and `aks-recipes.vercel.app`. The projects' `images` arrays stay empty until real screenshots can be captured. No fabricated website screenshots are included.
 
 ## Printable résumé
 
