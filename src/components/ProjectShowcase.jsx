@@ -24,7 +24,7 @@ function PreviewImage({ image, name, thumbnail = false }) {
       loading={thumbnail ? "lazy" : "eager"}
       decoding="async"
       onError={() => setUnavailable(true)}
-      className="h-full w-full object-cover object-top"
+      className="motion-project-image h-full w-full object-cover object-top"
     />
   );
 }
@@ -68,7 +68,7 @@ export default function ProjectShowcase({ project }) {
   );
 
   return (
-    <article className="grid items-center gap-7 rounded-3xl border border-line bg-canvas p-4 sm:gap-9 sm:p-6 lg:grid-cols-[7fr_5fr] lg:gap-12 lg:p-7">
+    <article className="motion-card grid items-center gap-7 rounded-3xl border border-line bg-canvas p-4 sm:gap-9 sm:p-6 lg:grid-cols-[7fr_5fr] lg:gap-12 lg:p-7">
       <div className="min-w-0">
         <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-[0_12px_35px_-25px_#29272d45]">
           <div className="flex h-10 items-center justify-between gap-3 border-b border-line bg-[#faf9f6] px-4">
@@ -148,7 +148,7 @@ export default function ProjectShowcase({ project }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${project.name} live demo (opens in new tab)`}
-            className="group inline-flex items-center gap-7 rounded-full bg-ink py-2.5 pl-5 pr-2.5 text-xs font-medium text-white transition hover:bg-accent"
+            className="motion-button group inline-flex items-center gap-7 rounded-full bg-ink py-2.5 pl-5 pr-2.5 text-xs font-medium text-white transition hover:bg-accent"
           >
             Live demo
             <span className="grid size-8 place-items-center rounded-full bg-lilac text-ink transition group-hover:rotate-[-10deg]">

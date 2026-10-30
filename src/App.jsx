@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   FiArrowDown,
   FiArrowUpRight,
@@ -11,6 +11,7 @@ import {
   FiX,
 } from "react-icons/fi";
 import HeroScene from "./components/HeroScene";
+import useScrollMotion from "./hooks/useScrollMotion";
 import { profile, projects, skills } from "./data/portfolio";
 import ProjectShowcase from "./components/ProjectShowcase";
 import ContactForm from "./components/ContactForm";
@@ -37,6 +38,7 @@ function Asterisk({ className = "" }) {
 function SectionLabel({ number, children, light = false }) {
   return (
     <p
+      data-reveal="up"
       className={`flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[.18em] ${light ? "text-white/55" : "text-muted"}`}
     >
       <span className={light ? "text-lilac" : "text-accent"}>{number}</span>
@@ -47,9 +49,12 @@ function SectionLabel({ number, children, light = false }) {
 }
 
 function App() {
+  const siteRef = useRef(null);
+  useScrollMotion(siteRef);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   useEffect(() => {
+    if (!("IntersectionObserver" in window)) return;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -74,7 +79,8 @@ function App() {
 
   return (
     <>
-      <div className="site-shell">
+      <div ref={siteRef} className="site-shell">
+        <div className="scroll-progress" aria-hidden="true" />
         <a
           href="#main"
           className="fixed left-4 top-4 z-50 -translate-y-24 rounded-lg bg-ink px-5 py-3 text-white focus:translate-y-0"
@@ -103,7 +109,7 @@ function App() {
                   key={id}
                   href={`#${id}`}
                   aria-current={activeSection === id ? "location" : undefined}
-                  className={`relative py-2 text-[13px] transition hover:text-accent ${activeSection === id ? "text-accent" : "text-muted"}`}
+                  className={`motion-link relative py-2 text-[13px] transition hover:text-accent ${activeSection === id ? "text-accent" : "text-muted"}`}
                 >
                   {label}
                   {activeSection === id && (
@@ -113,7 +119,7 @@ function App() {
               ))}
               <a
                 href="#contact"
-                className="flex items-center gap-1.5 text-[13px] text-muted transition hover:text-accent"
+                className="motion-link flex items-center gap-1.5 text-[13px] text-muted transition hover:text-accent"
               >
                 Contact <FiArrowUpRight aria-hidden="true" size={14} />
               </a>
@@ -146,7 +152,7 @@ function App() {
             <nav
               id="mobile-menu"
               aria-label="Mobile navigation"
-              className="border-t border-line bg-canvas px-6 py-4 md:hidden"
+              className="motion-menu border-t border-line bg-canvas px-6 py-4 md:hidden"
             >
               {[...navigation, ["contact", "Contact"]].map(([id, label]) => (
                 <a
@@ -172,11 +178,18 @@ function App() {
           >
             <div className="grid items-center gap-12 lg:grid-cols-[1.12fr_1fr] lg:gap-10">
               <div className="relative z-10">
-                <div className="mb-7 flex items-center gap-2.5 text-[10px] font-semibold uppercase tracking-[.17em] text-muted">
+                <div
+                  data-reveal="hero"
+                  className="mb-7 flex items-center gap-2.5 text-[10px] font-semibold uppercase tracking-[.17em] text-muted"
+                >
                   <span className="h-px w-6 bg-accent" />
                   Full-stack web developer. Creator at heart.
                 </div>
-                <h1 className="text-[clamp(50px,7vw,94px)] font-medium leading-[1.06] tracking-[-.065em]">
+                <h1
+                  data-reveal="hero"
+                  style={{ "--reveal-delay": "100ms" }}
+                  className="text-[clamp(50px,7vw,94px)] font-medium leading-[1.06] tracking-[-.065em]"
+                >
                   Turning ideas
                   <br />
                   into digital
@@ -197,17 +210,25 @@ function App() {
                     />
                   </svg>
                 </h1>
-                <p className="mt-7 max-w-[385px] text-[15px] leading-[1.85] text-muted">
+                <p
+                  data-reveal="hero"
+                  style={{ "--reveal-delay": "210ms" }}
+                  className="mt-7 max-w-[385px] text-[15px] leading-[1.85] text-muted"
+                >
                   Hi, I’m{" "}
                   <span className="font-semibold text-ink">{profile.name}</span>{" "}
                   — a full-stack web developer connecting thoughtful design with
                   clean code. I build for the people on the other side of the
                   screen.
                 </p>
-                <div className="mt-8 flex flex-wrap items-center gap-7">
+                <div
+                  data-reveal="hero"
+                  style={{ "--reveal-delay": "310ms" }}
+                  className="mt-8 flex flex-wrap items-center gap-7"
+                >
                   <a
                     href="#work"
-                    className="group inline-flex items-center gap-6 rounded-full bg-ink py-2.5 pl-6 pr-2.5 text-[12px] font-medium text-white transition hover:bg-accent"
+                    className="motion-button group inline-flex items-center gap-6 rounded-full bg-ink py-2.5 pl-6 pr-2.5 text-[12px] font-medium text-white transition hover:bg-accent"
                   >
                     Explore my work
                     <span className="grid size-8 place-items-center rounded-full bg-lilac text-ink transition group-hover:rotate-[-35deg]">
@@ -217,11 +238,19 @@ function App() {
                   <ResumeButton />
                 </div>
               </div>
-              <div className="mx-auto w-full max-w-[540px] pb-2 lg:-mr-3">
+              <div
+                data-reveal="scale"
+                style={{ "--reveal-delay": "160ms" }}
+                className="mx-auto w-full max-w-[540px] pb-2 lg:-mr-3"
+              >
                 <HeroScene />
               </div>
             </div>
-            <div className="mt-12 flex items-center justify-between border-b border-line pb-6 lg:mt-17">
+            <div
+              data-reveal="up"
+              style={{ "--reveal-delay": "360ms" }}
+              className="mt-12 flex items-center justify-between border-b border-line pb-6 lg:mt-17"
+            >
               <a
                 href="#work"
                 className="flex items-center gap-3 text-[9px] uppercase tracking-[.15em] text-muted"
@@ -244,7 +273,7 @@ function App() {
               </div>
             </div>
           </section>
-          <div className="page-shell pb-10 pt-3 sm:pb-16">
+          <div data-reveal="up" className="page-shell pb-10 pt-3 sm:pb-16">
             <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-10">
               <p className="shrink-0 text-[9px] font-semibold uppercase leading-5 tracking-[.16em] text-muted">
                 The tools behind
@@ -271,12 +300,14 @@ function App() {
           >
             <div className="page-shell">
               <SectionLabel number="01">Selected work</SectionLabel>
-              <h2 className="section-heading mb-9 mt-6">
+              <h2 data-reveal="up" className="section-heading mb-9 mt-6">
                 Projects<span className="text-accent">.</span>
               </h2>
               <div className="grid gap-6">
                 {projects.map((project) => (
-                  <ProjectShowcase key={project.id} project={project} />
+                  <div key={project.id} data-reveal="up">
+                    <ProjectShowcase project={project} />
+                  </div>
                 ))}
               </div>
             </div>
@@ -284,7 +315,7 @@ function App() {
           <section id="about" className="page-shell py-18 sm:py-24">
             <SectionLabel number="02">A little about me</SectionLabel>
             <div className="mt-8 grid gap-12 lg:grid-cols-[.95fr_1.05fr] lg:gap-24">
-              <div>
+              <div data-reveal="left">
                 <h2 className="section-heading">
                   A builder at heart.
                   <br />A problem solver
@@ -303,7 +334,11 @@ function App() {
                   </p>
                 </div>
               </div>
-              <div className="pt-1">
+              <div
+                data-reveal="right"
+                style={{ "--reveal-delay": "100ms" }}
+                className="pt-1"
+              >
                 <p className="text-[19px] leading-[1.7] tracking-[-.025em]">
                   I care as much about how a product{" "}
                   <span className="font-editorial text-[24px] italic text-accent">
@@ -363,7 +398,10 @@ function App() {
           >
             <div className="page-shell">
               <SectionLabel number="03">My toolkit</SectionLabel>
-              <div className="mb-9 mt-6 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+              <div
+                data-reveal="up"
+                className="mb-9 mt-6 flex flex-col justify-between gap-5 md:flex-row md:items-end"
+              >
                 <h2 className="section-heading">
                   The right tools.
                   <br />
@@ -378,25 +416,28 @@ function App() {
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-                {skills.map(({ name, Icon, detail, category }) => (
+                {skills.map(({ name, Icon, detail, category }, index) => (
                   <div
                     key={name}
-                    className="group rounded-xl border border-line bg-canvas p-5 transition duration-300 hover:-translate-y-1 hover:border-accent/30 hover:bg-white hover:shadow-lg hover:shadow-accent/5"
+                    data-reveal="up"
+                    style={{ "--reveal-delay": `${(index % 3) * 75}ms` }}
                   >
-                    <div className="mb-7 flex items-center justify-between">
-                      <Icon
-                        aria-hidden="true"
-                        className="text-ink/75 transition group-hover:text-accent"
-                        size={27}
-                      />
-                      <span className="text-[7px] tracking-[.08em] text-muted">
-                        {category}
-                      </span>
+                    <div className="motion-card group h-full rounded-xl border border-line bg-canvas p-5 transition duration-300 hover:border-accent/30 hover:bg-white hover:shadow-lg hover:shadow-accent/5">
+                      <div className="mb-7 flex items-center justify-between">
+                        <Icon
+                          aria-hidden="true"
+                          className="text-ink/75 transition group-hover:text-accent"
+                          size={27}
+                        />
+                        <span className="text-[7px] tracking-[.08em] text-muted">
+                          {category}
+                        </span>
+                      </div>
+                      <h3 className="text-[12px] font-semibold">{name}</h3>
+                      <p className="mt-2 text-[10px] leading-[1.7] text-muted">
+                        {detail}
+                      </p>
                     </div>
-                    <h3 className="text-[12px] font-semibold">{name}</h3>
-                    <p className="mt-2 text-[10px] leading-[1.7] text-muted">
-                      {detail}
-                    </p>
                   </div>
                 ))}
               </div>
@@ -404,7 +445,10 @@ function App() {
           </section>
           <section id="contact" className="page-shell py-18 sm:py-24">
             <div className="grid items-start gap-6 lg:grid-cols-[.95fr_1.05fr]">
-              <div className="relative overflow-hidden rounded-3xl bg-[#27252b] px-7 py-10 text-canvas sm:px-10 sm:py-12">
+              <div
+                data-reveal="left"
+                className="relative overflow-hidden rounded-3xl bg-[#27252b] px-7 py-10 text-canvas sm:px-10 sm:py-12"
+              >
                 <Asterisk className="pointer-events-none absolute -right-12 top-12 size-60 rotate-12 text-lilac/8" />
                 <SectionLabel number="04" light>
                   Let’s start a conversation
@@ -460,11 +504,13 @@ function App() {
                   <SocialLinks light />
                 </div>
               </div>
-              <ContactForm />
+              <div data-reveal="right" style={{ "--reveal-delay": "100ms" }}>
+                <ContactForm />
+              </div>
             </div>
           </section>
         </main>
-        <footer className="page-shell">
+        <footer data-reveal="up" className="page-shell">
           <div className="grid gap-8 border-t border-line py-9 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <a href="#home" className="inline-flex items-center gap-2">

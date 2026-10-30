@@ -150,7 +150,7 @@ export default function ContactForm({ onPrepare }) {
           </p>
           <button
             type="submit"
-            className="group flex shrink-0 items-center gap-4 rounded-full bg-ink py-2.5 pl-5 pr-2.5 text-[11px] font-medium text-white transition hover:bg-accent"
+            className="motion-button group flex shrink-0 items-center gap-4 rounded-full bg-ink py-2.5 pl-5 pr-2.5 text-[11px] font-medium text-white transition hover:bg-accent"
           >
             Prepare message
             <span className="grid size-8 place-items-center rounded-full bg-lilac text-ink">

@@ -1,0 +1,253 @@
+/* Progressive enhancement: content stays visible until the motion hook opts in. */
+.site-shell {
+  /* Clip entrance offsets without creating a scroll container or breaking the sticky header. */
+  overflow-x: clip;
+}
+
+.site-shell [data-reveal] {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+}
+
+.scroll-progress {
+  display: none;
+  position: fixed;
+  z-index: 50;
+  inset: 0 0 auto;
+  height: 2px;
+  width: 100%;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--color-lilac), var(--color-accent));
+  transform: scaleX(var(--scroll-progress, 0));
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.site-shell .motion-link {
+  position: relative;
+}
+
+.site-shell .motion-link::after {
+  position: absolute;
+  inset: auto 0 -0.2em;
+  height: 1px;
+  content: "";
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+}
+
+.site-shell .motion-link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-shell[data-motion="enabled"] .scroll-progress {
+    display: block;
+  }
+
+  .site-shell[data-motion="enabled"] [data-reveal] {
+    --reveal-x: 0px;
+    --reveal-y: 26px;
+    --reveal-scale: 1;
+    --reveal-duration: 800ms;
+    opacity: 0;
+    translate: var(--reveal-x) calc(var(--reveal-y) + var(--motion-lift, 0px));
+    scale: var(--reveal-scale);
+    transition:
+      opacity var(--reveal-duration) cubic-bezier(0.16, 1, 0.3, 1)
+        var(--reveal-delay, 0ms),
+      translate var(--reveal-duration) cubic-bezier(0.16, 1, 0.3, 1)
+        var(--reveal-delay, 0ms),
+      scale var(--reveal-duration) cubic-bezier(0.16, 1, 0.3, 1)
+        var(--reveal-delay, 0ms),
+      box-shadow 280ms ease,
+      border-color 280ms ease,
+      background-color 280ms ease,
+      color 220ms ease;
+  }
+
+  .site-shell[data-motion="enabled"] [data-reveal="left"] {
+    --reveal-x: -24px;
+    --reveal-y: 0px;
+  }
+
+  .site-shell[data-motion="enabled"] [data-reveal="right"] {
+    --reveal-x: 24px;
+    --reveal-y: 0px;
+  }
+
+  .site-shell[data-motion="enabled"] [data-reveal="scale"] {
+    --reveal-y: 14px;
+    --reveal-scale: 0.97;
+  }
+
+  .site-shell[data-motion="enabled"] [data-reveal="hero"] {
+    --reveal-y: 18px;
+    --reveal-duration: 1000ms;
+  }
+
+  .site-shell[data-motion="enabled"] [data-reveal][data-revealed="true"] {
+    --reveal-x: 0px;
+    --reveal-y: 0px;
+    --reveal-scale: 1;
+    opacity: 1;
+  }
+
+  .site-shell[data-motion="enabled"] [data-reveal]:focus-within {
+    --reveal-x: 0px;
+    --reveal-y: 0px;
+    --reveal-scale: 1;
+    opacity: 1;
+    translate: none;
+    scale: 1;
+    transition: none;
+  }
+
+  .site-shell .motion-project-image {
+    scale: 1;
+    transition: scale 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .site-shell .motion-button,
+  .site-shell .motion-card {
+    --motion-lift: 0px;
+    translate: 0 var(--motion-lift);
+    transition:
+      translate 280ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 280ms ease,
+      border-color 280ms ease,
+      background-color 280ms ease,
+      color 220ms ease;
+  }
+
+  .site-shell .motion-link::after {
+    transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .site-shell[data-motion="enabled"] .motion-menu {
+    animation: motion-menu-enter 400ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .site-shell[data-motion="enabled"] .hero-sparkle {
+    animation: motion-star-drift 9s ease-in-out infinite;
+  }
+
+  .site-shell[data-motion="enabled"] .hero-sparkle-delayed {
+    animation: motion-star-drift 12s ease-in-out -4s infinite reverse;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .site-shell .motion-button:hover {
+    --motion-lift: -2px;
+    box-shadow: 0 8px 20px -12px rgb(41 39 45 / 35%);
+  }
+
+  .site-shell .motion-button:active {
+    --motion-lift: 0px;
+    box-shadow: 0 3px 8px -6px rgb(41 39 45 / 20%);
+  }
+
+  .site-shell .motion-card:hover {
+    --motion-lift: -4px;
+    border-color: color-mix(
+      in srgb,
+      var(--color-accent) 30%,
+      var(--color-line)
+    );
+    box-shadow: 0 18px 36px -27px rgb(88 62 112 / 35%);
+  }
+
+  .site-shell .motion-card:hover .motion-project-image {
+    scale: 1.025;
+  }
+
+  .site-shell .motion-card:active {
+    --motion-lift: -1px;
+  }
+
+  .site-shell .motion-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+}
+
+@keyframes motion-menu-enter {
+  from {
+    opacity: 0;
+    translate: 0 -6px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes motion-star-drift {
+  0%,
+  100% {
+    rotate: -7deg;
+    scale: 0.94;
+    opacity: 0.75;
+  }
+  50% {
+    rotate: 14deg;
+    scale: 1.04;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-shell *,
+  .site-shell *::before,
+  .site-shell *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Only reset positional motion on animated elements, preserving layout offsets. */
+  .site-shell [data-reveal],
+  .site-shell .motion-button,
+  .site-shell .motion-card,
+  .site-shell .motion-menu,
+  .site-shell .motion-project-image,
+  .site-shell .hero-sparkle,
+  .site-shell .hero-sparkle-delayed {
+    opacity: 1 !important;
+    translate: none !important;
+    scale: 1 !important;
+  }
+
+  .scroll-progress {
+    display: none !important;
+  }
+}
+
+@media print {
+  .scroll-progress {
+    display: none !important;
+  }
+
+  .site-shell *,
+  .site-shell *::before,
+  .site-shell *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .site-shell [data-reveal],
+  .site-shell .motion-button,
+  .site-shell .motion-card,
+  .site-shell .motion-menu,
+  .site-shell .motion-project-image,
+  .site-shell .hero-sparkle,
+  .site-shell .hero-sparkle-delayed {
+    opacity: 1 !important;
+    translate: none !important;
+    scale: 1 !important;
+  }
+}

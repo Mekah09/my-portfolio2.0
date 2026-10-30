@@ -43,7 +43,7 @@ images: [
 ],
 ```
 
-The first screenshot is the default preview; thumbnails select additional images. Missing images use a simple text fallback showing each project's actual type. Screenshot capture is currently blocked by the cloud network policy for `nook-pearl-six.vercel.app` and `aks-recipes.vercel.app`. The projects' `images` arrays stay empty until real screenshots can be captured. No fabricated website screenshots are included.
+The first screenshot is the default preview; thumbnails select additional images. Missing images use a simple text fallback showing each project's actual type. The current projects use screenshots imported from `src/assets/images/` in the project data.
 
 ## Printable résumé
 
@@ -60,3 +60,9 @@ The “Prepare message” action preserves entered text and shows an honest “n
 ## Design and accessibility
 
 `src/index.css` contains Tailwind theme tokens, local fonts, and reduced-motion-aware animations. Components use Tailwind utilities. Native dialogs support Escape, focus containment, and focus restoration. Fonts include SIL Open Font Licenses in `public/fonts/`.
+
+## Motion
+
+Scroll reveals progressively introduce headings, project cards, skills, and the contact section. Hero elements enter in sequence, desktop pointer movement gently tilts the illustration, and a thin progress line tracks the page. Cards, navigation links, and buttons have restrained hover effects.
+
+`src/hooks/useScrollMotion.js` manages one shared IntersectionObserver and frame-coalesced progress updates, without React rendering on scroll. `src/motion.css` controls timing and effects. Add `data-reveal="up"`, `"left"`, `"right"`, or `"scale"` to reveal a new element, with an optional `--reveal-delay` CSS variable. Each element reveals once. Content stays visible if motion is disabled or observers are unavailable, keyboard focus reveals controls immediately, and printing keeps the résumé static. The system responds to reduced-motion preference changes; touch devices skip pointer tilt.
